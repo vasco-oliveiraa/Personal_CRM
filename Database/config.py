@@ -1,0 +1,1 @@
+db_name = 'personal_crm'

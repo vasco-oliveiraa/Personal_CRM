@@ -1,0 +1,7 @@
+streamlit
+streamlit-authenticator
+pandas
+datetime
+mysql.connector
+bcrypt
+spacy
