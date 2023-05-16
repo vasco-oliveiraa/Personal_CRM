@@ -7,7 +7,7 @@ import os
 import json
 
 # Specify the absolute path to your .env file
-dotenv_path = "C:/Users/Vasco Oliveira/OneDrive/Documentos/GitHub/Personal-CRM/.env"
+dotenv_path = "C:/Users/Vasco Oliveira/OneDrive/Documentos/GitHub/Personal_CRM/.env"
 
 # Load environment variables from the .env file
 load_dotenv(dotenv_path)
