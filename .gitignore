@@ -127,7 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-personalcrm_keypair.ppk
-Steps for AWS.txt
 
+# Other
+Personal CRM.ppk
+Steps for AWS.txt
 /Interactions/Recordings
