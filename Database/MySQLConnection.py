@@ -7,13 +7,13 @@ import os
 import json
 
 # Get the absolute path of the current directory
-    current_dir = os.path.dirname(os.path.abspath(__file__))
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
-    # Specify the relative path to your .env file
-    dotenv_path = os.path.join(current_dir, "..", ".env")
+# Specify the relative path to your .env file
+dotenv_path = os.path.join(current_dir, "..", ".env")
 
-    # Load environment variables from the .env file
-    load_dotenv(dotenv_path)
+# Load environment variables from the .env file
+load_dotenv(dotenv_path)
 
 def get_secret():
     secret_name = "rds!db-9cdf7c4e-7852-4006-bc78-de06f0584885"
