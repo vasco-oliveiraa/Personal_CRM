@@ -31,8 +31,11 @@ def record_audio(duration, filename):
         os.makedirs(recordings_folder)
     write(os.path.join(recordings_folder, filename), fs, myrecording)
 
-    # Specify the absolute path to your .env file
-    dotenv_path = "C:/Users/Vasco Oliveira/OneDrive/Documentos/GitHub/Personal-CRM/.env"
+    # Get the absolute path of the current directory
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Specify the relative path to your .env file
+    dotenv_path = os.path.join(current_dir, "..", ".env")
 
     # Load environment variables from the .env file
     load_dotenv(dotenv_path)
