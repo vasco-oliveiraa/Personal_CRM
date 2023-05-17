@@ -22,7 +22,7 @@ def app():
     
     # Set the initial session state variable to False
     if 'authenticated' not in st.session_state:
-        st.session_state.authenticated = True # Change to False to activate login functionality
+        st.session_state.authenticated = False # Change to False to activate login functionality
 
     # If the user is not logged in, show the login page
     if not st.session_state.authenticated:
@@ -30,7 +30,7 @@ def app():
         
     # If the user is logged in, show the main page
     if st.session_state.authenticated:
-        st.session_state.user_id = 1 # Delete to activate login functionality
+        # st.session_state.user_id = 1 # Delete to activate login functionality
 
         selected = option_menu(
             menu_title = None,
