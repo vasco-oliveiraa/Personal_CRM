@@ -6,11 +6,14 @@ from dotenv import load_dotenv
 import os
 import json
 
-# Specify the absolute path to your .env file
-dotenv_path = "C:/Users/Vasco Oliveira/OneDrive/Documentos/GitHub/Personal_CRM/.env"
+# Get the absolute path of the current directory
+    current_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Load environment variables from the .env file
-load_dotenv(dotenv_path)
+    # Specify the relative path to your .env file
+    dotenv_path = os.path.join(current_dir, "..", ".env")
+
+    # Load environment variables from the .env file
+    load_dotenv(dotenv_path)
 
 def get_secret():
     secret_name = "rds!db-9cdf7c4e-7852-4006-bc78-de06f0584885"
