@@ -72,7 +72,7 @@ def contact_pages(user_id):
                 with col1:
 
                     reminder_id = choose_reminder_selectbox(contact_id, key='choose-reminder-selectbox-edit-reminder-form-contact-pages')
-                if interaction_id == 0:
+                if reminder_id == 0:
                     st.write('No reminders found.')
                 else:
                     with col2:
