@@ -4,6 +4,7 @@ mysql-connector-python==8.0.33
 pandas==1.5.3
 python-dotenv==1.0.0
 python-dateutil==2.8.2
+PyAudio==0.2.13
 scipy==1.10.1
 sounddevice==0.4.6
 streamlit==1.22.0
