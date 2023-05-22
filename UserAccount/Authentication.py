@@ -5,7 +5,7 @@ import streamlit as st
 import time
 import bcrypt
 
-def login(email, password):
+def login(email, password, signup):
     with my_sql_connection() as c:
         c.execute(f'SELECT id, first_name, last_name, hashed_password FROM {config.db_name}.users WHERE email = %s', [email])
         result = c.fetchone()
@@ -13,10 +13,16 @@ def login(email, password):
             hashed_password = result[-1].encode()
             encoded_password = password.encode()
             if bcrypt.checkpw(encoded_password, hashed_password):
-
-                st.success(f"Welcome back {result[1]+' '+result[2]}")
-                st.session_state.user_id = result[0]
-                st.session_state.authenticated = True
+                
+                st.experimental_set_query_params(
+                    auth='True',
+                    user=[result[0]],
+                )
+                if signup == True:
+                    pass
+                else:
+                    st.success(f"Welcome back {result[1]+' '+result[2]}")
+                    time.sleep(1)
                 st.experimental_rerun()
 
             else:
@@ -25,11 +31,13 @@ def login(email, password):
             st.error("Email not registered")
         
 def signup(first_name, last_name, email, password, confirm_password):
-    with my_sql_connection() as c:
-        if password == confirm_password:
+    if password == confirm_password:
+        with my_sql_connection() as c:
             c.execute(f"SELECT * FROM {config.db_name}.users WHERE email = %s", [email])
             user = c.fetchone()
-            if user is None:
+            if user is not None:
+                st.error("Email already registered")
+            else:
                 # Hash the password before storing it in the database
                 encoded_password = password.encode()
                 salt = bcrypt.gensalt()
@@ -37,14 +45,12 @@ def signup(first_name, last_name, email, password, confirm_password):
 
                 c.execute(f"INSERT INTO {config.db_name}.users (first_name, last_name, email, hashed_password) VALUES (%s, %s, %s, %s)", [first_name, last_name, email, hashed_password])
                 st.success("Account created")
-                # time.sleep(2)
-                # login(email, password)
-            else:
-                st.error("Email already registered")
-        else:
-            st.error("Passwords do not match")
-
-
+                time.sleep(2)
+                
+        if user is None:
+            login(email, password, signup=True)
+    else:
+        st.error("Passwords do not match")
 
 # Create a signup function
 def authentication():

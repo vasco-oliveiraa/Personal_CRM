@@ -14,7 +14,7 @@ from Reminders.EditReminder import edit_reminder_form, choose_reminder_selectbox
 
 def overview(user_id):
     
-    st.title("Personal CRM")
+    st.title("✉️ Sau")
 
     tab1, tab2, tab3 = st.tabs(["View Contacts","Add New Contact","Edit Contact"])
 

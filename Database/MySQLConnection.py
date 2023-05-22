@@ -46,13 +46,13 @@ def get_secret():
 
 @contextmanager
 def my_sql_connection():
-    secret = get_secret()
-    secret_json = json.loads(secret)
+    #secret = get_secret()
+    #secret_json = json.loads(secret)
 
     mydb = mysql.connector.connect(
-        host="personalcrm.c6l5guiieo6w.eu-west-3.rds.amazonaws.com",
-        user=secret_json['username'],
-        password=secret_json['password']
+        host= 'localhost', #"personalcrm.c6l5guiieo6w.eu-west-3.rds.amazonaws.com",
+        user= 'root', #secret_json['username'],
+        password= 'bigdata' #secret_json['password']
     )
     c = mydb.cursor()
     try:

@@ -9,8 +9,8 @@ from HomePage.ContactPages import contact_pages
 def app():
     # Set the page configuration
     st.set_page_config(
-    page_title="Personal CRM",
-    page_icon="📖",
+    page_title="Sau",
+    page_icon="✉️",
     #layout="wide",
     #initial_sidebar_state="expanded",
     menu_items={
@@ -20,17 +20,15 @@ def app():
     }
     )
     
-    # Set the initial session state variable to False
-    if 'authenticated' not in st.session_state:
-        st.session_state.authenticated = False # Change to False to activate login functionality
+    params = st.experimental_get_query_params()
+    auth_param = params.get('auth', [''])[0]
 
-    # If the user is not logged in, show the login page
-    if not st.session_state.authenticated:
+    if auth_param == '':
+        st.experimental_set_query_params(auth='False')
         authentication()
-        
-    # If the user is logged in, show the main page
-    if st.session_state.authenticated:
-        # st.session_state.user_id = 1 # Delete to activate login functionality
+    elif auth_param == 'False':
+        authentication()
+    elif auth_param == 'True':
 
         selected = option_menu(
             menu_title = None,
@@ -42,11 +40,11 @@ def app():
         )
 
         if selected == 'Overview':
-            overview(st.session_state.user_id)
-            # overview(1)
+            overview(st.experimental_get_query_params()['user'][0])
         if selected == 'Contact Pages':
-            contact_pages(st.session_state.user_id)
-            # contact_pages(1)
+            contact_pages(st.experimental_get_query_params()['user'][0])
         
+        
+
 if __name__ == "__main__":
     app()
