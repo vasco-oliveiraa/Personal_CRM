@@ -65,13 +65,13 @@ def schedule_reminders():
     scheduler = BackgroundScheduler()
     # Retrieve all user_ids from the database
     with my_sql_connection() as c:
-        c.execute(f'SELECT DISTINCT user_id FROM {config.db_name}.users;')
+        c.execute(f'SELECT DISTINCT id FROM {config.db_name}.users;')
         rows = c.fetchall()
     
     user_ids = [row[0] for row in rows]
 
     for user_id in user_ids:
         # scheduler.add_job(check_reminders, trigger='cron', hour=2, minute=53)
-        scheduler.add_job(check_reminders, 'interval', days=1)
+        scheduler.add_job(check_reminders, 'interval', days=1, args=[user_id])
 
     scheduler.start()
