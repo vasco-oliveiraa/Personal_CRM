@@ -1,1 +1,1 @@
-db_name = 'personal_crm'
+db_name = 'sau'

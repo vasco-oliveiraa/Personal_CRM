@@ -6,7 +6,7 @@ import Database.config as config
 
 def view_reminder_list(user_id):
     with my_sql_connection() as c:
-        c.execute(f"SELECT reminder_title Title, reminder_actual_date Date, CONCAT(c.first_name, ' ', c.last_name) Contact, i.interaction_title Interaction "
+        c.execute(f"SELECT r.reminder_title Title, r.reminder_actual_date Date, CONCAT(c.first_name, ' ', c.last_name) Contact, i.interaction_title Interaction "
                   f"FROM {config.db_name}.reminders r "
                   f"JOIN {config.db_name}.interactions i ON i.id = r.interaction_id "
                   f"JOIN {config.db_name}.contacts c ON c.id = r.contact_id "

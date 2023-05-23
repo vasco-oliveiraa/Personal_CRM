@@ -1,10 +1,13 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
+import threading
 
 from UserAccount.Authentication import authentication
 
 from HomePage.Overview import overview
 from HomePage.ContactPages import contact_pages
+
+from Reminders.Scheduler import schedule_reminders
 
 def app():
     # Set the page configuration
@@ -43,8 +46,10 @@ def app():
             overview(st.experimental_get_query_params()['user'][0])
         if selected == 'Contact Pages':
             contact_pages(st.experimental_get_query_params()['user'][0])
+            
+    # Create a separate thread to run the reminders scheduler
+    scheduler_thread = threading.Thread(target=schedule_reminders)
+    scheduler_thread.start()
         
-        
-
 if __name__ == "__main__":
     app()

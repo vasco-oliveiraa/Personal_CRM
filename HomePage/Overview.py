@@ -12,6 +12,8 @@ from Reminders.ViewReminderList import view_reminder_list
 from Reminders.AddReminder import add_reminder_form
 from Reminders.EditReminder import edit_reminder_form, choose_reminder_selectbox, delete_reminder_button
 
+from Reminders.Scheduler import check_reminders
+
 def overview(user_id):
     
     st.title("✉️ Sau")

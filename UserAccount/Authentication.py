@@ -5,7 +5,7 @@ import streamlit as st
 import time
 import bcrypt
 
-def login(email, password, signup):
+def login(email, password, signup=False):
     with my_sql_connection() as c:
         c.execute(f'SELECT id, first_name, last_name, hashed_password FROM {config.db_name}.users WHERE email = %s', [email])
         result = c.fetchone()
@@ -55,7 +55,7 @@ def signup(first_name, last_name, email, password, confirm_password):
 # Create a signup function
 def authentication():
     # Add a title
-    st.title("Personal CRM")
+    st.title("✉️ Sau")
 
     tab1, tab2 = st.tabs(["Log In","Sign Up"])
 
