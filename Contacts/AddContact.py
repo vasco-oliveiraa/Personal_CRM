@@ -6,6 +6,8 @@ from time import sleep
 from Database.MySQLConnection import my_sql_connection
 import Database.config as config
 
+from Reminders.AddReminder import add_reminder
+
 # Define a function to add a new contact
 def add_contact(contact_info):
     with my_sql_connection() as c:
@@ -61,6 +63,35 @@ def add_contact_form(user_id):
             else:
                 contact_info = (user_id, first_name, last_name, birthday, nationality, current_occupation, partner_name, circumstance_met, year_met, city_met, country_met, interests, talking_points)
                 add_contact(contact_info)
+                # Add Birthday Reminder
+                if birthday:
+                    with my_sql_connection() as c:
+                        c.execute(f'''
+                            SELECT
+                                id
+                            FROM
+                                {config.db_name}.contacts
+                            WHERE
+                                user_id = %s
+                                AND first_name = %s
+                                AND last_name = %s
+                                AND birthday = %s
+                                AND nationality = %s
+                                AND current_occupation = %s
+                                AND partner_name = %s
+                                AND circumstance_met = %s
+                                AND year_met = %s
+                                AND city_met = %s
+                                AND country_met = %s
+                                AND interests = %s
+                                AND talking_points = %s
+                        ''', list(contact_info))
+                        contact_id = c.fetchone()
+                        interaction_id = None
+                        title = f'Wish {first_name} {last_name} a happy birthday!'
+                        message = f"Today is {first_name} {last_name}'s birthday!"
+                        c.execute(f"INSERT INTO {config.db_name}.reminders (contact_id, interaction_id, reminder_title, reminder_actual_date, reminder_message) VALUES (%s, %s, %s, %s, %s)", (contact_id, interaction_id, title, birthday, message))
+
                 st.success("Contact added!")
                 sleep(1)
                 st.experimental_rerun()

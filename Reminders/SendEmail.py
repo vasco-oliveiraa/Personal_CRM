@@ -38,9 +38,5 @@ def send_email(receiver_email, subject, message):
         # Send the email
         server.sendmail(sender_email, receiver_email, msg.as_string())
 
-        print('Email sent successfully!')
-    except Exception as e:
-        print('An error occurred while sending the email:', str(e))
-    finally:
         # Close the connection to the SMTP server
         server.quit()

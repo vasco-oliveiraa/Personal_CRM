@@ -1,5 +1,5 @@
 import streamlit as st
-import pandas as pd
+from datetime import datetime
 from time import sleep
 
 from Database.MySQLConnection import my_sql_connection
@@ -31,7 +31,7 @@ def add_reminder_form(contact_id: int) -> None:
             title = st.text_input("Title*")
 
         with col2:
-            date = st.date_input("Date*", min_value=pd.datetime.now().date())
+            date = st.date_input("Date*", min_value=datetime.now().date())
 
         message = st.text_input("Message*")
         

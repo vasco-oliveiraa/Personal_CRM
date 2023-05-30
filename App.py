@@ -6,6 +6,7 @@ from UserAccount.Authentication import authentication
 
 from HomePage.Overview import overview
 from HomePage.ContactPages import contact_pages
+from HomePage.Account import account
 
 from Reminders.Scheduler import schedule_reminders
 
@@ -35,8 +36,8 @@ def app():
 
         selected = option_menu(
             menu_title = None,
-            options = ['Overview', 'Contact Pages'],
-            icons = ['house', 'book'],
+            options = ['Overview', 'Contact Pages', 'Account'],
+            icons = ['house', 'book', 'person'],
             menu_icon = 'cast',
             default_index = 0,
             orientation = 'horizontal'
@@ -46,6 +47,8 @@ def app():
             overview(st.experimental_get_query_params()['user'][0])
         if selected == 'Contact Pages':
             contact_pages(st.experimental_get_query_params()['user'][0])
+        if selected == 'Account':
+            account(st.experimental_get_query_params()['user'][0])
             
     # Create a separate thread to run the reminders scheduler
     scheduler_thread = threading.Thread(target=schedule_reminders)

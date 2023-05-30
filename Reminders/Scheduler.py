@@ -1,13 +1,23 @@
 from datetime import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.events import EVENT_JOB_ADDED, EVENT_JOB_REMOVED, EVENT_JOB_EXECUTED
 
 from Database.MySQLConnection import my_sql_connection
 import Database.config as config
 
 from Reminders.SendEmail import send_email
 
+def job_event_listener(event):
+    if event.code == EVENT_JOB_ADDED:
+        print(f"New job added: {event.job_id}")
+    elif event.code == EVENT_JOB_REMOVED:
+        print(f"Job removed: {event.job_id}")
+    elif event.code == EVENT_JOB_EXECUTED:
+        print(f"Job executed: {event.job_id}")
+
 def check_reminders(user_id):
     scheduler = BackgroundScheduler()
+    scheduler.add_listener(job_event_listener, EVENT_JOB_ADDED | EVENT_JOB_REMOVED | EVENT_JOB_EXECUTED)
     scheduler.start()
 
     with my_sql_connection() as c:
@@ -45,8 +55,8 @@ def check_reminders(user_id):
         user_first_name = todays_reminders[0][4]
         receiver_email = todays_reminders[0][5]
         reminder_delivery_time = todays_reminders[0][6]
-        hour = reminder_delivery_time.total_seconds() // 3600
-        minute = (reminder_delivery_time.total_seconds() % 3600) // 60
+        hour = int(reminder_delivery_time.total_seconds() // 3600)
+        minute = int((reminder_delivery_time.total_seconds() % 3600) // 60)
         subject = '✉️ Sau Reminders for Today!'
         message = f"Hey {user_first_name},\n\nHere are your Sau reminders for today:\n\n"
 
@@ -58,20 +68,30 @@ def check_reminders(user_id):
             message += f"- {contact} - {reminder_title}:\n"
             message += f"  {reminder_message}\n\n"
             
-        # Schedule the email to be sent at the desired send time
-        scheduler.add_job(send_email, trigger='cron', hour=hour, minute=minute, args=[receiver_email, subject, message])
+    # Schedule the email to be sent at the desired send time
+    scheduler.add_job(send_email, trigger='cron', hour=hour, minute=minute, args=[receiver_email, subject, message])
         
 def schedule_reminders():
     scheduler = BackgroundScheduler()
+    scheduler.add_listener(job_event_listener, EVENT_JOB_ADDED | EVENT_JOB_REMOVED | EVENT_JOB_EXECUTED)
+
     # Retrieve all user_ids from the database
     with my_sql_connection() as c:
         c.execute(f'SELECT DISTINCT id FROM {config.db_name}.users;')
         rows = c.fetchall()
-    
+
     user_ids = [row[0] for row in rows]
 
+    # Calculate the start time for the next day at 00:00
+    start_time = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0) + timedelta(days=1)
+
     for user_id in user_ids:
-        # scheduler.add_job(check_reminders, trigger='cron', hour=2, minute=53)
-        scheduler.add_job(check_reminders, 'interval', days=1, args=[user_id])
+        scheduler.add_job(
+            check_reminders,
+            trigger='interval',
+            days=1,
+            start_date=start_time,
+            args=[user_id]
+        )
 
     scheduler.start()

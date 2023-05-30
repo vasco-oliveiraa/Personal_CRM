@@ -17,7 +17,7 @@ load_dotenv(dotenv_path)
 
 def get_secret():
     secret_name = "rds!db-9cdf7c4e-7852-4006-bc78-de06f0584885"
-    region_name = "eu-west-3"
+    region_name = os.getenv("AWS_REGION")
 
     # Add your AWS credentials here
     aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
@@ -50,7 +50,7 @@ def my_sql_connection():
     secret_json = json.loads(secret)
 
     mydb = mysql.connector.connect(
-        host= "personalcrm.c6l5guiieo6w.eu-west-3.rds.amazonaws.com", #'localhost',
+        host= "sau.c6l5guiieo6w.eu-west-3.rds.amazonaws.com", #'localhost',
         user= secret_json['username'], #'root', 
         password= secret_json['password'] #'bigdata'
     )
