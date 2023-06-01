@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.events import EVENT_JOB_ADDED, EVENT_JOB_REMOVED, EVENT_JOB_EXECUTED
 
@@ -6,6 +6,7 @@ from Database.MySQLConnection import my_sql_connection
 import Database.config as config
 
 from Reminders.SendEmail import send_email
+from Reminders.AddBirthdayReminder import add_birthday_reminder
 
 def job_event_listener(event):
     if event.code == EVENT_JOB_ADDED:
@@ -94,4 +95,39 @@ def schedule_reminders():
             args=[user_id]
         )
 
+    scheduler.start()
+    
+def schedule_birthday_reminders():
+    scheduler = BackgroundScheduler()
+    scheduler.add_listener(job_event_listener, EVENT_JOB_ADDED | EVENT_JOB_REMOVED | EVENT_JOB_EXECUTED)
+    
+    # Retrieve all user_ids from the database
+    with my_sql_connection() as c:
+        c.execute(f'SELECT DISTINCT id FROM {config.db_name}.contacts;')
+        rows = c.fetchall()
+
+    contact_ids = [row[0] for row in rows]
+    
+    for index, contact_id in enumerate(contact_ids):
+        # Schedule the function to run on the first day of every year at 00:00
+        scheduler.add_job(
+            add_birthday_reminder,
+            trigger='cron',
+            month=1,
+            days=1,
+            hour=0,
+            minute=index,
+            second=second,
+            args=[contact_id]
+        )
+        # scheduler.add_job(
+        #     add_birthday_reminder,
+        #     trigger='cron',
+        #     hour=15,
+        #     minute=45,
+        #     second=index,
+        #     args=[contact_id]
+        # )
+
+    # Start the scheduler
     scheduler.start()

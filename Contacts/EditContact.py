@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 from typing import Dict, Any
 from time import sleep
 
@@ -96,7 +96,8 @@ def edit_contact_form(user_id: int, contact_id: int) -> None:
 
             # Create two columns for the year met and circumstance met fields
             col1, col2 = st.columns(2)
-            years = range(2001, datetime.datetime.now().year + 1)
+            years = list(range(1950, datetime.now().year + 1))
+            years.reverse()
             with col1:
                 # Create a selectbox for the year met field
                 year_met = st.selectbox("Year Met*", options=years, index=years.index(contact_data[8]))

@@ -8,7 +8,7 @@ from HomePage.Overview import overview
 from HomePage.ContactPages import contact_pages
 from HomePage.Account import account
 
-from Reminders.Scheduler import schedule_reminders
+from Reminders.Scheduler import schedule_reminders, schedule_birthday_reminders
 
 def app():
     # Set the page configuration
@@ -51,8 +51,11 @@ def app():
             account(st.experimental_get_query_params()['user'][0])
             
     # Create a separate thread to run the reminders scheduler
-    scheduler_thread = threading.Thread(target=schedule_reminders)
-    scheduler_thread.start()
+    reminder_scheduler_thread = threading.Thread(target=schedule_reminders)
+    reminder_scheduler_thread.start()
+    
+    birthday_scheduler_thread = threading.Thread(target=schedule_birthday_reminders)
+    birthday_scheduler_thread.start()
         
 if __name__ == "__main__":
     app()

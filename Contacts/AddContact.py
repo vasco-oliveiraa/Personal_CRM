@@ -1,5 +1,5 @@
 import streamlit as st
-import datetime
+from datetime import datetime
 import pandas as pd
 from time import sleep
 
@@ -7,6 +7,7 @@ from Database.MySQLConnection import my_sql_connection
 import Database.config as config
 
 from Reminders.AddReminder import add_reminder
+from Reminders.AddBirthdayReminder import add_birthday_reminder
 
 # Define a function to add a new contact
 def add_contact(contact_info):
@@ -38,9 +39,9 @@ def add_contact_form(user_id):
         col1, col2 = st.columns(2)
         
         with col1:
-            # Define a list of all years since my birth until now
-            years = range(2001, datetime.datetime.now().year + 1)
-            year_met = st.selectbox("Year Met*", options=years)
+            years = list(range(1950, datetime.now().year + 1))
+            years.reverse()
+            year_met = st.selectbox("Year Met*", options=years, index=0)
             
         with col2:
             circumstance_met = st.text_input("Circumstance Met*")
@@ -85,15 +86,10 @@ def add_contact_form(user_id):
                                 AND country_met = %s
                                 AND interests = %s
                                 AND talking_points = %s
-                        ''', list(contact_info))
-                        contact_id = c.fetchone()
-                        interaction_id = None
-                        title = f'Wish {first_name} {last_name} a happy birthday!'
-                        message = f"Today is {first_name} {last_name}'s birthday!"
-                        c.execute(f"INSERT INTO {config.db_name}.reminders (contact_id, interaction_id, reminder_title, reminder_actual_date, reminder_message) VALUES (%s, %s, %s, %s, %s)", (contact_id, interaction_id, title, birthday, message))
-
-                st.success("Contact added!")
-                sleep(1)
-                st.experimental_rerun()
-                # Next step is to figure out how to reset the form without having to reload the page.
-                # Using the default clear_on_submit from the form doesn't work, because it clears everytime you try, and sometimes users will try without filling all the necessary fields.
+                        ''', contact_info)
+                        results = c.fetchone()
+                    contact_id = results[0]
+                    add_birthday_reminder(contact_id)
+                    st.success("Contact added!")
+                    sleep(1)
+                    st.experimental_rerun()
