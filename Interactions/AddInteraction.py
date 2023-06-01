@@ -5,7 +5,7 @@ from time import sleep, strftime
 from Database.MySQLConnection import my_sql_connection
 import Database.config as config
 
-from Interactions.AudioRecorder import record_audio
+# from Interactions.AudioRecorder import record_audio
 
 from Contacts.EditContact import choose_contact_selectbox
 
@@ -40,27 +40,27 @@ def add_interaction_form(user_id: int, contact_id: int, key:str) -> None:
                 sleep(1)
                 st.experimental_rerun()
         
-    with tab2:
+#     with tab2:
         
-        with st.form(key='add-interaction-form-recorded',clear_on_submit=True):
+#         with st.form(key='add-interaction-form-recorded',clear_on_submit=True):
             
-            col1, col2 = st.columns(2)
+#             col1, col2 = st.columns(2)
 
-            with col1:
-                title = st.text_input("Title*")
+#             with col1:
+#                 title = st.text_input("Title*")
 
-            with col2:
-                date = st.date_input("Date*", min_value=pd.to_datetime('2001-05-26'))
+#             with col2:
+#                 date = st.date_input("Date*", min_value=pd.to_datetime('2001-05-26'))
 
-            duration = st.slider("Select recording duration", 0, 60, 30, 5)
+#             duration = st.slider("Select recording duration", 0, 60, 30, 5)
 
-            if st.form_submit_button("Start Recording"):
-                timestr = strftime("%Y-%m-%d - %H-%M-%S")
-                filename = f"{contact_id} - {timestr}"
-                recorded_notes = record_audio(duration, filename)
+#             if st.form_submit_button("Start Recording"):
+#                 timestr = strftime("%Y-%m-%d - %H-%M-%S")
+#                 filename = f"{contact_id} - {timestr}"
+#                 recorded_notes = record_audio(duration, filename)
 
-                interaction_info = (contact_id, title, date, recorded_notes)
-                add_interaction(interaction_info)
-                st.success("Interaction added!")
-                sleep(1)
-                st.experimental_rerun()
+#                 interaction_info = (contact_id, title, date, recorded_notes)
+#                 add_interaction(interaction_info)
+#                 st.success("Interaction added!")
+#                 sleep(1)
+#                 st.experimental_rerun()
