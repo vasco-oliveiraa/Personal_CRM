@@ -1,12 +1,18 @@
-boto3==1.26.129
-bcrypt==4.0.1
-mysql-connector-python==8.0.33
-pandas==1.5.3
-python-dotenv==1.0.0
-python-dateutil==2.8.2
-PyAudio==0.2.13
-scipy==1.10.1
-sounddevice==0.4.6
-streamlit==1.22.0
-streamlit-option-menu==0.3.2
-apscheduler==3.9.1
+boto3==1.26.129  # AWS SDK for Python (Boto3)
+bcrypt==4.0.1  # Password hashing library
+mysql-connector-python==8.0.33  # MySQL Connector/Python
+pandas==1.5.3  # Data manipulation and analysis library
+python-dotenv==1.0.0  # Library for managing environment variables
+python-dateutil==2.8.2  # Library for working with dates and times
+PyAudio==0.2.13  # Library for audio I/O
+scipy==1.10.1  # Scientific computing library
+sounddevice==0.4.6  # Audio input/output library
+streamlit==1.23.1  # Web app framework for data science and machine learning
+streamlit-option-menu==0.3.2  # Customizable option menu for Streamlit
+apscheduler==3.9.1  # Advanced Python scheduler
+numpy==1.24.3  # Numerical computing library
+scikit-learn==1.2.2  # Machine learning library
+nltk==3.8.1  # Natural Language Toolkit (NLP) library
+gensim==4.3.1  # Library for topic modeling and document similarity
+transformers==4.29.2  # State-of-the-art Natural Language Processing (NLP) library
+Jinja2==3.1.2  # Template engine for Python web development

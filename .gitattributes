@@ -1,2 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+ConversationStarter/GoogleNews-vectors-negative300.bin filter=lfs diff=lfs merge=lfs -text
+ConversationStarter/articles_fake_dates.json filter=lfs diff=lfs merge=lfs -text

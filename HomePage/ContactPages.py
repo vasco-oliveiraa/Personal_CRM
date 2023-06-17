@@ -13,6 +13,8 @@ from Interactions.EditInteraction import edit_interaction_form, choose_interacti
 from Reminders.AddReminder import add_reminder_form
 from Reminders.EditReminder import edit_reminder_form, choose_reminder_selectbox, delete_reminder_button
 
+from ConversationStarter.ConversationStarter import generate_conversation_starter
+
 def contact_pages(user_id):
     
     col1, col2 = st.columns([8,1])
@@ -80,3 +82,7 @@ def contact_pages(user_id):
                         st.write(' ')
                         delete_reminder_button(contact_id, key='delete-reminder-button-contact-pages')
                     edit_reminder_form(contact_id, reminder_id = reminder_id)
+        
+        with st.expander('Generate Conversation Starter'):
+            if st.button('Generate'):
+                st.write(generate_conversation_starter(contact_id))

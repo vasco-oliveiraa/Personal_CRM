@@ -1,0 +1,5 @@
+outs:
+- md5: deb9eedbf5c4e72de669a14ca4dd2ff1
+  size: 211494623
+  hash: md5
+  path: articles_fake_dates.json

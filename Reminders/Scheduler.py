@@ -109,25 +109,21 @@ def schedule_birthday_reminders():
     contact_ids = [row[0] for row in rows]
     
     for index, contact_id in enumerate(contact_ids):
+        # Calculate the minute and second values
+        minute = index // 60  # Integer division to get the minute value
+        second = index % 60  # Modulo operator to get the second value
+
         # Schedule the function to run on the first day of every year at 00:00
         scheduler.add_job(
             add_birthday_reminder,
             trigger='cron',
             month=1,
-            days=1,
+            day=1,
             hour=0,
-            minute=index,
+            minute=minute,
             second=second,
             args=[contact_id]
         )
-        # scheduler.add_job(
-        #     add_birthday_reminder,
-        #     trigger='cron',
-        #     hour=15,
-        #     minute=45,
-        #     second=index,
-        #     args=[contact_id]
-        # )
 
     # Start the scheduler
     scheduler.start()

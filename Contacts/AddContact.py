@@ -13,6 +13,9 @@ from Reminders.AddBirthdayReminder import add_birthday_reminder
 def add_contact(contact_info):
     with my_sql_connection() as c:
         c.execute(f"INSERT INTO {config.db_name}.contacts (user_id, first_name, last_name, birthday, nationality, current_occupation, partner_name, circumstance_met, year_met, city_met, country_met, interests, talking_points) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", contact_info)
+        c.execute("SELECT LAST_INSERT_ID()")
+        contact_id = c.fetchone()[0]
+    return contact_id
 
 # Page where contact information is added
 def add_contact_form(user_id):
@@ -63,32 +66,9 @@ def add_contact_form(user_id):
                     st.error("Please fill all mandatory fields (*)")
             else:
                 contact_info = (user_id, first_name, last_name, birthday, nationality, current_occupation, partner_name, circumstance_met, year_met, city_met, country_met, interests, talking_points)
-                add_contact(contact_info)
+                contact_id = add_contact(contact_info)
                 # Add Birthday Reminder
                 if birthday:
-                    with my_sql_connection() as c:
-                        c.execute(f'''
-                            SELECT
-                                id
-                            FROM
-                                {config.db_name}.contacts
-                            WHERE
-                                user_id = %s
-                                AND first_name = %s
-                                AND last_name = %s
-                                AND birthday = %s
-                                AND nationality = %s
-                                AND current_occupation = %s
-                                AND partner_name = %s
-                                AND circumstance_met = %s
-                                AND year_met = %s
-                                AND city_met = %s
-                                AND country_met = %s
-                                AND interests = %s
-                                AND talking_points = %s
-                        ''', contact_info)
-                        results = c.fetchone()
-                    contact_id = results[0]
                     add_birthday_reminder(contact_id)
                     st.success("Contact added!")
                     sleep(1)

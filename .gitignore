@@ -134,3 +134,5 @@ Steps for AWS.txt
 /Interactions/Recordings
 credentials.json
 /.vs
+/ConversationStarter/Testing
+*.sql

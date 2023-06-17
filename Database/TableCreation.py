@@ -53,6 +53,19 @@ def table_creation():
                 reminder_actual_date DATE,
                 reminder_message TEXT
         );''')
+        
+        c.execute(f'''
+            CREATE TABLE {config.db_name}.articles (
+                id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                title VARCHAR(255) NOT NULL,
+                publisher VARCHAR(255),
+                author VARCHAR(255),
+                date DATE,
+                content TEXT,
+                keywords TEXT,
+                summary TEXT
+        );''')
+
 
 
 
