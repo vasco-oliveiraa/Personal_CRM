@@ -27,9 +27,9 @@ def generate_message_openai(article_summary):
         "model": "gpt-3.5-turbo",
         "messages": [{"role": "user", "content": prompt}],
         "max_tokens": 100,
-        # "temperature": 0.5,
+        "temperature": 0.3,
         # "stop": "###",
-        # "n": 1,
+        "n": 1,
         # "presence_penalty": 0.6,
         # "frequency_penalty": 0.2
     }
@@ -44,6 +44,6 @@ def generate_message_openai(article_summary):
 
     # Parse and print the generated message
     data = response.json()
-    output_message = data["choices"][0]["message"]["content"]
+    message = data["choices"][0]["message"]["content"]
     
-    return output_message
+    return message
