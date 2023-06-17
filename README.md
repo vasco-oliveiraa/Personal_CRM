@@ -9,12 +9,11 @@ When you clone this repository, you will need to retrieve the large files that a
 1. Install DVC by following the installation instructions provided on the official DVC website (https://dvc.org/).
 
 2. Run the following command to retrieve the large files:
+   
+   `dvc pull`
+   This command will download the necessary large files from the remote storage location or the local DVC cache.
 
-`dvc pull`
-
-This command will download the necessary large files from the remote storage location or the local DVC cache.
-
-3. Once the large files are downloaded, you can use them within the project.
+4. Once the large files are downloaded, you can use them within the project.
 
 Please note that the large files themselves are not stored in the Git repository. Instead, DVC stores only the metadata and pointers to these files. This approach allows for efficient storage, versioning, and collaboration with large datasets.
 
