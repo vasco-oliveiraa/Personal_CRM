@@ -16,16 +16,19 @@ def extract_keywords_tfidf(text, top_n):
 
     text_no_punctuation = re.sub(r'[^\w\s]', '', text) # Remove punctuation
     
+    # Tokenize text
+    tokens = word_tokenize(text_no_punctuation)
+    preprocessed_text = ' '.join(tokens)
+    
     tfidf = TfidfVectorizer(strip_accents=None,
                                  lowercase=True,
-                                 tokenizer=word_tokenize,
                                  use_idf=True,
                                  norm='l2',
                                  smooth_idf=True,
                                  stop_words='english',
                                  sublinear_tf=True)
 
-    tfidf_matrix = tfidf.fit_transform([text_no_punctuation])
+    tfidf_matrix = tfidf.fit_transform([preprocessed_text])
     feature_names = tfidf.get_feature_names_out()
 
     # Calculate the TF-IDF scores
