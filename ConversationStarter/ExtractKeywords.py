@@ -9,6 +9,8 @@ import json
 from dotenv import load_dotenv
 import os
 
+nltk.download('stopwords')
+
 def extract_keywords_tfidf(text, top_n):
 
     text_no_punctuation = re.sub(r'[^\w\s]', '', text) # Remove punctuation
