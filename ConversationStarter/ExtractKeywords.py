@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 import os
 
 nltk.download('stopwords')
+nltk.download('punkt') 
 
 def extract_keywords_tfidf(text, top_n):
 
