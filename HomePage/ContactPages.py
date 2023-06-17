@@ -83,6 +83,6 @@ def contact_pages(user_id):
                         delete_reminder_button(contact_id, key='delete-reminder-button-contact-pages')
                     edit_reminder_form(contact_id, reminder_id = reminder_id)
         
-        with st.expander('Generate Conversation Starter'):
-            if st.button('Generate'):
-                st.write(generate_conversation_starter(contact_id))
+        # with st.expander('Generate Conversation Starter'):
+        #     if st.button('Generate'):
+        #         st.write(generate_conversation_starter(contact_id))
