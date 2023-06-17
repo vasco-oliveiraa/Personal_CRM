@@ -6,7 +6,7 @@ python-dotenv==1.0.0  # Library for managing environment variables
 python-dateutil==2.8.2  # Library for working with dates and times
 PyAudio==0.2.13  # Library for audio I/O
 scipy==1.10.1  # Scientific computing library
-sounddevice==0.4.6  # Audio input/output library
+#sounddevice==0.4.6  # Audio input/output library
 streamlit==1.23.1  # Web app framework for data science and machine learning
 streamlit-option-menu==0.3.2  # Customizable option menu for Streamlit
 apscheduler==3.9.1  # Advanced Python scheduler
