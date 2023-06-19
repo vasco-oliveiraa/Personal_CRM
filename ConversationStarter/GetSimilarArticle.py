@@ -34,8 +34,7 @@ def get_similar_article(interests, articles):
 
         # reassign best similarity score
         if similarity_score > best_similarity:
-            best_similarity = similarity_score
+            best_similarity = similarity_score # Cosine similarity for article
             article_id = article_id
-            similarity_dict = {article_id: best_similarity}
             
     return article_id

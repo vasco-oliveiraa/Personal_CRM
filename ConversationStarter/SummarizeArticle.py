@@ -15,8 +15,7 @@ def summarize_article(article_id):
         max_length = tokenizer.model_max_length - 2  # Maximum sequence length for the model minus special tokens
         with my_sql_connection() as c:
             c.execute(f"SELECT content FROM {config.db_name}.articles WHERE id=%s", (article_id,))
-            results = c.fetchone()
-            content = results[0]
+            content = c.fetchone()[0]
 
             encoded_inputs = tokenizer.encode_plus(content, add_special_tokens=True, max_length=max_length, truncation=True, return_tensors='pt')
 

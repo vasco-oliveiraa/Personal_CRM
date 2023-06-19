@@ -18,7 +18,7 @@ def generate_conversation_starter(contact_id):
     week_before = (datetime.today() - timedelta(days=7)).strftime('%Y-%m-%d')
 
     with st.spinner('Getting Recent Articles'):
-        articles = get_recent_articles(num_articles=5, from_date=None, until_date=current_date)
+        articles = get_recent_articles(num_articles=50, from_date=week_before, until_date=current_date)
 
     with st.spinner('Getting Article Keywords'):
         article_keywords_dict = get_article_keywords(articles)

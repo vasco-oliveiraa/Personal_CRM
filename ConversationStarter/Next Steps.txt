@@ -1,1 +1,9 @@
 Depending on a the desired maintenance level of each contact by the user, as well as their last interaction, the app can suggest that a new interaction should be made, and it will scan last week's articles, with a recency preference weight by day. Summarization will be done either before or after sentence similarity (depending on what is most computationally sensible and yields better results). There should also be an option for the user to regenerate and ask for another article to be mentioned.
+
+Set daily scheduler to check for articles older than 1 week
+
+decide how many articles we wanna check each time
+
+implement maintenance & interactions to trigger conversation starter
+
+When editing a reminder, if there is an interaction associated, the checkbox should be true and the interaction dropdown should show that

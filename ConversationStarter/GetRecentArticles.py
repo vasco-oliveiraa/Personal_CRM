@@ -10,7 +10,7 @@ def get_recent_articles(num_articles=100, from_date=None, until_date=None):
         articles = json.load(file)
 
     # Filter articles by date range (if provided)
-    if from_date and end_date:
+    if from_date and until_date:
         filtered_articles = [
             article for article in articles
             if from_date <= article['date'] <= until_date
