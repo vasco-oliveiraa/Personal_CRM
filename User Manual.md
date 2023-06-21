@@ -15,7 +15,7 @@ The app offers three main features:
 
 ## II. Getting Started
 ### Installation and Setup Process
-You can access the web-based version using the following link: [[Sau](http://15.237.27.70:8501/)]
+You can access the web-based version using the following link: [Sau](http://15.237.27.70:8501/)
 
 ### User Registration and Login
 Once registered, use the following credentials to access the application using the demo user:
