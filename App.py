@@ -51,11 +51,11 @@ def app():
             account(st.experimental_get_query_params()['user'][0])
             
     # Create a separate thread to run the reminders scheduler
-    reminder_scheduler_thread = threading.Thread(target=schedule_reminders)
-    reminder_scheduler_thread.start()
+#     reminder_scheduler_thread = threading.Thread(target=schedule_reminders)
+#     reminder_scheduler_thread.start()
     
-    birthday_scheduler_thread = threading.Thread(target=schedule_birthday_reminders)
-    birthday_scheduler_thread.start()
+#     birthday_scheduler_thread = threading.Thread(target=schedule_birthday_reminders)
+#     birthday_scheduler_thread.start()
         
 if __name__ == "__main__":
     app()
