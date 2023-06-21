@@ -29,28 +29,28 @@ The app features a clean and intuitive user interface with tabs for Contact Mana
 
 ### Searching and Managing Contacts
 - Tap the "View Contacts" button to view all contact information and details.
-![View Contacts](insert_image_code_here)
+- ![View Contacts](User%20Manual%20Screenshots/view_contacts.png)
 
 ### Adding Contacts
 - Tap the "Add Contact" button to enter a new contact's information, including name, phone number, email address, interests, and additional details.
-![Add Contact](insert_image_code_here)
+- ![Add Contact](User%20Manual%20Screenshots/add_contact.png)
 
 ### Editing Contacts
 - Edit existing contacts by selecting the contact and tapping the "Edit Contact" button.
-![Edit Contact](insert_image_code_here)
+- ![Edit Contact](User%20Manual%20Screenshots/edit_contact.png)
 
 ## IV. Interaction Manager
 ### Recording and Tracking Interactions
 - Click on the “Interactions” tab and log interactions such as meetings, calls, and emails by selecting the contact and choosing the appropriate interaction type. Add relevant details, date, and time to keep track of each interaction.
-![Record Interaction](insert_image_code_here)
+![Record Interaction](User%20Manual%20Screenshots/record_interaction.png)
 
 ### Setting Reminders and Notifications
 - Set reminders for important events like birthdays or follow-ups. The app sends notifications to ensure you never miss an important interaction or appointment.
-![Set Reminders](insert_image_code_here)
+![Set Reminders](User%20Manual%20Screenshots/set_reminders.pnge)
 
 ## V. Contact Pages
 - To view all information regarding a specific contact, click on the “Contact Pages” tab and choose the desired contact. Here you can view and edit contact information, interactions, and reminders for a selected contact.
-![Contact Pages](insert_image_code_here)
+![Contact Pages](User%20Manual%20Screenshots/contact_pages.png)
 
 ### Conversation Starter
 1. Configuring Contact Interests
@@ -58,7 +58,7 @@ The app features a clean and intuitive user interface with tabs for Contact Mana
 3. Generating Personalized Messages
 4. Reviewing and Customizing Conversation Starters
 5. Best Practices for Effective Engagement
-![Conversation Starter](insert_image_code_here)
+![Conversation Starter](User%20Manual%20Screenshots/conversation_starter.png)
 
 ## VI. Data Security and Privacy
 ### Data Protection Measures
