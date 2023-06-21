@@ -14,6 +14,10 @@ Sau is an application designed to help individuals keep in touch with those they
 Sau aims to address the challenge of maintaining meaningful connections with friends and loved ones, even when life gets busy or physical distance separates us. It caters to a target audience primarily consisting of 25 to 35-year-olds who value strong and healthy relationships. The application particularly supports individuals living outside their home country, enabling them to keep close ties with their loved ones far away.
 
 ## Features
+- **Contact Manager:** The contact manager allows for efficient management and organization of contacts. A user can enter and maintain a contact’s information and edit it at any time. The information that can be stored includes a contact’s: name, partner’s name, birthday, occupation, interests, and details regarding the time at which the user met the contact (circumstance, year, city, and country).
+
+- **Interaction Manager:** The interaction manager allows a user to keep track of any interactions with their contacts, including meetings, calls, and emails. A user can input an interaction title, date, and any additional notes which can be provided as a text or speech input. Based on an interaction, a user is also able to set reminders for future interactions. This feature ensures that a user stays on top of their interactions and conducts timely follows ups.
+
 - **Conversation Starter:** Sau includes an innovative Conversation Starter feature. When the application detects a significant gap in interactions with a particular contact, longer than the desired frequency of interaction, it scans the contact's interests and analyses recent news articles. Based on this analysis, Sau generates a personalized message suggesting a conversation topic related to an interesting article, tailored to the contact's interests.
 
 ## Installation
