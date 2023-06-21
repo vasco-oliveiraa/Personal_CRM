@@ -70,6 +70,6 @@ def add_contact_form(user_id):
                 # Add Birthday Reminder
                 if birthday:
                     add_birthday_reminder(contact_id)
-                    st.success("Contact added!")
-                    sleep(1)
-                    st.experimental_rerun()
+                st.success("Contact added!")
+                sleep(1)
+                st.experimental_rerun()
